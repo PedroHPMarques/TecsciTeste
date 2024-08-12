@@ -1,14 +1,6 @@
-# vue-project
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+# TecSci-project
+O desafio contém uma página inicial"Home" e dois links de acesso, um para "nomes" que exibe através da API do IBGE um ranking de nomes mais utilizados em certas décadas. 
+Em "Gráficos" será encontrado um gráfico gerado pelo JSon disponibilizado com Valores e Datas.
 
 ## Project Setup
 
