@@ -1,85 +1,88 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { VApp, VAppBar, VContainer, VMain, VFooter, VBtn, VToolbar, VToolbarTitle, VSpacer } from 'vuetify/components'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <VApp>
+    <VAppBar app>
+      <VContainer class="app-bar-container">
+        <VToolbar class="app-bar-toolbar">
+          <VSpacer />
+          <div class="toolbar-links">
+            <RouterLink to="/" class="toolbar-link">Home</RouterLink>
+            <RouterLink to="/nomes" class="toolbar-link">Nomes</RouterLink>
+            <RouterLink to="/graficos" class="toolbar-link">Gráficos</RouterLink>
+          </div>
+          <VSpacer />
+        </VToolbar>
+      </VContainer>
+    </VAppBar>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <VMain>
+      <VContainer>
+        <RouterView />
+      </VContainer>
+    </VMain>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <!-- Rodapé -->
+    <VFooter app>
+      <VContainer>
+        <div class="text-center">
+          <p>© 2024 Pedro Henrique Marques. Todos os direitos reservados.</p>
+        </div>
+      </VContainer>
+    </VFooter>
+  </VApp>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.v-app-bar {
+  background-color: #32b46e;
+  color: white;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.app-bar-container {
+  background-color: #32b46e;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.app-bar-toolbar {
+  background-color: #32b46e;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.toolbar-links {
+  display: flex;
+  gap: 20px; 
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.toolbar-link {
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent; /* Adiciona uma borda inferior que se destaca ao passar o mouse */
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.toolbar-link:hover {
+  color: #327a58;
+  border-bottom: 2px solid #327a58; /* Cor da borda inferior ao passar o mouse */
 }
 
-nav a:first-of-type {
-  border: 0;
+.v-footer {
+  background-color: #2d2c2c;
+  color: white;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.v-footer p {
+  margin: 0;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+@media (max-width: 600px) {
+  .toolbar-link {
+    font-size: 0.875rem;
   }
 }
 </style>
