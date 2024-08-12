@@ -1,8 +1,44 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import { useNomesStore } from '@/stores/nomesStore'
+import { Chart } from 'highcharts-vue'
 
 const nomesStore = useNomesStore()
+const chartOptions = ref({})
+
+const updateChart = (data, decade) => {
+  chartOptions.value = {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: `Frequência de Nomes - Década de ${nomesStore.selectedDecade}`
+    },
+    xAxis: {
+      categories: data.map(item => item.nome),
+      title: {
+        text: 'Nome'
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Frequência'
+      }
+    },
+    series: [{
+      name: 'Frequência',
+      data: data.map(item => item.frequencia)
+    }]
+  }
+}
+
+watch(() => nomesStore.nomesRanking, (newRanking) => {
+  if (newRanking.length > 0) {
+    const firstDecadeData = newRanking[0].res
+    const decade = newRanking[0].periodo
+    updateChart(firstDecadeData, decade)
+  }
+}, { immediate: true })
 
 onMounted(() => {
   nomesStore.fetchNomesRanking()
@@ -11,6 +47,7 @@ onMounted(() => {
 
 <template>
   <main>
+    <Chart :options="chartOptions" />
     <h1>Ranking de Nomes por Década - Brasil</h1>
    <div class="buttons-container">
       <button 
